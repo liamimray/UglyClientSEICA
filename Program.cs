@@ -595,8 +595,43 @@ TODO:
 
     - Hardcoded number of fans, heaters, and sensors (for (int i = 1; i <= 3; i++))
 
+        Use a configuration file or dependency injection to manage these components dynamically. For example, reading the number of devices from a configuration file.
 
+2. The Single Responsibility Principle
 
+    - Main() does too much (UI, input handling, API communication, business logic).
 
+        Refactor Main() to delegate responsibilities to other classes or methods. For instance, create separate classes for UI handling, input processing, API communication, and business logic.
+
+3. Open for Extension, Closed for Modification (OCP)
+
+    - Switch-case in Main() grows when new features are added
+
+        Use polymorphism to handle different cases. Create an interface or abstract class for the common behavior and extend it for specific cases.
+
+4. Use Composition Over Inheritance
+
+    - Fan and Heater share common behaviour but have separate, unrelated implementations
+
+        Create a common interface or abstract class for shared behavior and use composition to include specific functionalities. For example, both Fan and Heater can implement a Device interface.
+
+5. Liskov Substitution Principle (LSP)
+
+    - Sensor reading methods return inconsistent types
+
+        Ensure that all subclasses or implementations of a class/interface return consistent types. For example, if Sensor has a method getReading(), all subclasses should return the same type.
+
+6. Hollywood Principle (IoC - Don’t Call Us, We’ll Call You)
+
+    - Temperature control logic is manually triggered instead of being reactive.
+
+        Implement an event-driven or reactive system where the temperature control logic is automatically triggered by events or changes in state.
+
+7. Dependency Inversion Principle (DIP)
+
+    - Concrete implementations are directly referenced in Main()
+            var fanService = new FanService(new HttpService());
+
+        Depend on abstractions rather than concrete implementations. Use interfaces or abstract classes and inject dependencies through constructors or setters.
 
 */
